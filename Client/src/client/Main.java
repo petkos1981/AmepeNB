@@ -93,7 +93,11 @@ public class Main {
                 try {
                 
                     Socket socket = new Socket();
+                    if (sAddress.equalsIgnoreCase("localhost")){
+                        sAddress = InetAddress.getLocalHost().getHostAddress();
+                    } 
                     socket.connect( new InetSocketAddress( sAddress, iServerPort), 500);
+                                        
                     connection = new ClientConnection( this , socket );
                     connection.start();
                     this.MAINWINDOW.setLoggedIn( false );
